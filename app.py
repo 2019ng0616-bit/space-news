@@ -1,10 +1,8 @@
 from news.fetch import fetch_all_feeds
+from news.save import save_to_json
 
 articles = fetch_all_feeds()
 
-for article in articles:
-    print("=" * 60)
-    print(article["source"])
-    print(article["title"])
-    print(article["published"])
-    print(article["link"])
+save_to_json(articles)
+
+print("保存完了")
