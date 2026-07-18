@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Space News AI</title>
+</head>
+
+<body>
+
+<h1>Space News AI</h1>
+
+{% for article in articles %}
+
+<hr>
+
+<h2>{{ article.title }}</h2>
+
+<p>{{ article.source }}</p>
+
+<p>{{ article.published }}</p>
+
+<a href="{{ article.link }}">記事を見る</a>
+
+{% endfor %}
+
+</body>
+</html>

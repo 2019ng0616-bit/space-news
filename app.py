@@ -1,8 +1,20 @@
-from news.fetch import fetch_all_feeds
-from news.save import save_to_json
+from flask import Flask, render_template
 
-articles = fetch_all_feeds()
+from news.load import load_from_json
 
-save_to_json(articles)
+app = Flask(__name__)
 
-print("保存完了")
+
+@app.route("/")
+def home():
+
+    articles = load_from_json()
+
+    return render_template(
+        "index.html",
+        articles=articles
+    )
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

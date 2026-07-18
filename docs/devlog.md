@@ -24,3 +24,19 @@ feedparser導入
 ## Next
 
 取得結果をJSONへ保存する
+
+## Issue #2
+
+### Goal
+
+RSS取得結果をJSONへ保存
+
+### Completed
+
+- save.py作成
+- news.json生成
+- UTF-8保存確認
+
+### Next
+
+HTMLへ一覧表示
