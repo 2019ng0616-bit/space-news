@@ -74,3 +74,38 @@ UI改善
 ### Next
 
 Ollama要約
+
+## Issue #5
+AI要約機能を実装。
+
+### 実装内容
+
+- Ollama(Gemma4)との連携
+- RSS記事をAIで日本語要約
+- news.jsonへsummaryを追加
+
+### 動作確認
+
+NASA・ESA・SpaceNewsの記事について要約生成を確認。
+
+JSON例
+
+```json
+{
+  "title": "...",
+  "summary": "..."
+}
+```
+
+### 課題
+
+- RSSによっては本文が取得できずタイトルのみになる。
+- 将来的には本文取得やキャッシュ機能を追加予定。
+
+### 学び
+
+ローカルLLMをPythonから呼び出す流れを理解できた。
+
+RSS取得 → AI要約 → JSON保存 → Flask表示
+
+という一連のデータフローを構築できた。
