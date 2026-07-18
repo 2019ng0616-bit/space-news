@@ -57,3 +57,20 @@ JSONをHTMLへ表示
 ### Next
 
 UI改善
+
+## Issue #4
+
+### Goal
+
+ニュース画面を改善
+
+### Completed
+
+- CSS追加
+- カード表示
+- AI Summary欄追加
+- レスポンシブ確認
+
+### Next
+
+Ollama要約
