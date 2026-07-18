@@ -40,3 +40,20 @@ RSS取得結果をJSONへ保存
 ### Next
 
 HTMLへ一覧表示
+
+## Issue #3
+
+### Goal
+
+JSONをHTMLへ表示
+
+### Completed
+
+- JSON読込
+- Flask導入
+- HTML一覧表示
+- ブラウザ確認
+
+### Next
+
+UI改善

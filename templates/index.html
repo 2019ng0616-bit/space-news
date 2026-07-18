@@ -3,26 +3,55 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space News AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<h1>Space News AI</h1>
+<header>
+    <h1>🚀 Space News AI</h1>
+    <p>Latest Space News from NASA, JAXA, ESA and SpaceNews</p>
+</header>
+
+<main class="container">
 
 {% for article in articles %}
 
-<hr>
+<div class="card">
 
-<h2>{{ article.title }}</h2>
+    <div class="source">
+        {{ article.source }}
+    </div>
 
-<p>{{ article.source }}</p>
+    <h2>
+        {{ article.title }}
+    </h2>
 
-<p>{{ article.published }}</p>
+    <p class="date">
+        {{ article.published }}
+    </p>
 
-<a href="{{ article.link }}">記事を見る</a>
+    <div class="summary">
+        <strong>AI Summary</strong>
+        <p>Coming soon...</p>
+    </div>
+
+    <a class="button"
+       href="{{ article.link }}"
+       target="_blank">
+       Read Article
+    </a>
+
+</div>
 
 {% endfor %}
 
+</main>
+
 </body>
+
 </html>
