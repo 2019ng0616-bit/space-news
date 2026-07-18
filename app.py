@@ -1,0 +1,1 @@
+print("Space News AI")
