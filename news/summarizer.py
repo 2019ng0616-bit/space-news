@@ -1,7 +1,5 @@
 from ollama import chat
-
-MODEL_NAME = "gemma4:latest"
-
+from config import MODEL_NAME
 
 def summarize_article(text: str) -> str:
     """
