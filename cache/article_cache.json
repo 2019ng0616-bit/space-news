@@ -1,26 +1,14 @@
-[
-    {
-        "source": "NASA",
-        "title": "NASA Pushes New Wing Design to Find Structural Limits",
-        "link": "https://www.nasa.gov/centers-and-facilities/armstrong/nasa-pushes-new-wing-design-to-find-structural-limits/",
-        "published": "Fri, 17 Jul 2026 23:08:33 +0000",
+{
+    "https://www.nasa.gov/centers-and-facilities/armstrong/nasa-pushes-new-wing-design-to-find-structural-limits/": {
         "summary": "NASAが、軽量で細い新翼設計の構造的限界を探る過酷なテストを実施した。\n意図的な限界突破の実験から、設計の潜在能力に大きな期待が集まった。\n新しい翼技術は航空機工学における重要な進展となる可能性を秘める。",
         "score": 5
     },
-    {
-        "source": "ESA",
-        "title": "TEC Business to Business website",
-        "link": "https://technology.esa.int",
-        "published": "Tue, 14 Dec 2021 08:52:00 +0100",
+    "https://technology.esa.int": {
         "summary": "TEC関連企業向けのビジネス用プラットフォームを紹介。\n具体的な宇宙ミッションやニュース要素は含まれない。\n単なるウェブサイトの存在告知記事と判断される。",
         "score": 2
     },
-    {
-        "source": "SpaceNews",
-        "title": "Mauritius becomes 70th nation to sign the Artemis Accords",
-        "link": "https://spacenews.com/mauritius-becomes-70th-nation-to-sign-the-artemis-accords/",
-        "published": "Sat, 18 Jul 2026 18:03:11 +0000",
+    "https://spacenews.com/mauritius-becomes-70th-nation-to-sign-the-artemis-accords/": {
         "summary": "モーリシャスがアルテミス協定に署名した。\nこれにより、アルテミス協定の署名国は70カ国となった。\n短期間で国家参加が進む国際的な動きを示す。",
         "score": 5
     }
-]
+}

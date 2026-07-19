@@ -3,7 +3,7 @@ import feedparser
 from config import MAX_ARTICLES
 from news.config_loader import load_rss_sources
 from news.summarizer import analyze_article
-
+from news.cache import load_cache, save_cache
 
 RSS_FEEDS = load_rss_sources()
 
@@ -22,6 +22,8 @@ def fetch_feed(source, url):
 
     print(f"{source}: {len(entries)} article(s)")
 
+    cache = load_cache()
+
     articles = []
 
     for i, entry in enumerate(entries, start=1):
@@ -30,6 +32,7 @@ def fetch_feed(source, url):
 
         title = entry.get("title", "")
         summary_text = entry.get("summary", "")
+        link = entry.get("link", "")
 
         content = f"""
 Title:
@@ -39,18 +42,33 @@ Summary:
 {summary_text}
 """
 
-        analysis = analyze_article(content)
+        # ----------------------------
+        # キャッシュ利用
+        # ----------------------------
+        if link in cache:
+
+            print("Already summarized")
+
+            analysis = cache[link]
+
+        else:
+
+            analysis = analyze_article(content)
+
+            cache[link] = analysis
 
         articles.append(
             {
                 "source": source,
                 "title": title,
-                "link": entry.get("link", ""),
+                "link": link,
                 "published": entry.get("published", ""),
                 "summary": analysis["summary"],
                 "score": analysis["score"],
             }
         )
+
+    save_cache(cache)
 
     return articles
 
@@ -61,13 +79,12 @@ def fetch_all_feeds():
 
     for rss in RSS_FEEDS:
 
+        source = rss["name"]
+        url = rss["url"]
+
         try:
 
-            source = rss["name"]
-            url = rss["url"]
-
             articles = fetch_feed(source, url)
-
             all_articles.extend(articles)
 
         except Exception as e:
