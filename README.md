@@ -32,3 +32,5 @@ AIを利用して、日本・海外の宇宙ニュースを毎朝自動収集・
 - [ ] Web画面
 - [ ] GitHub Pages公開
 - [ ] タスクスケジューラ
+
+<img width="1126" height="861" alt="image" src="https://github.com/user-attachments/assets/5eb5b506-21e8-47a0-ae94-2061f8404e35" />
