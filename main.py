@@ -25,7 +25,7 @@ def main():
 
     copy2(
         "static/style.css",
-        "docs/style.css"
+        "docs/static/style.css"
     )
 
     print()
