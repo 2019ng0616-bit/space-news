@@ -1,15 +1,11 @@
 import feedparser
 
 from config import MAX_ARTICLES
+from news.config_loader import load_rss_sources
 from news.summarizer import analyze_article
 
 
-RSS_FEEDS = {
-    "NASA": "https://www.nasa.gov/news-release/feed/",
-    "JAXA": "https://global.jaxa.jp/press/rss.xml",
-    "ESA": "https://www.esa.int/rssfeed/Our_Activities/Space_Engineering_Technology",
-    "SpaceNews": "https://spacenews.com/feed/",
-}
+RSS_FEEDS = load_rss_sources()
 
 
 def fetch_feed(source, url):
@@ -63,9 +59,12 @@ def fetch_all_feeds():
 
     all_articles = []
 
-    for source, url in RSS_FEEDS.items():
+    for rss in RSS_FEEDS:
 
         try:
+
+            source = rss["name"]
+            url = rss["url"]
 
             articles = fetch_feed(source, url)
 

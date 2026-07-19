@@ -1,0 +1,18 @@
+[
+    {
+        "name": "NASA",
+        "url": "https://www.nasa.gov/news-release/feed/"
+    },
+    {
+        "name": "JAXA",
+        "url": "https://global.jaxa.jp/press/rss.xml"
+    },
+    {
+        "name": "ESA",
+        "url": "https://www.esa.int/rssfeed/Our_Activities/Space_Engineering_Technology"
+    },
+    {
+        "name": "SpaceNews",
+        "url": "https://spacenews.com/feed/"
+    }
+]
