@@ -20,3 +20,6 @@ MODEL_NAME = "gemma4:latest"
 
 # JSON保存先
 OUTPUT_JSON = "data/news.json"
+
+# AI Scoring
+ENABLE_SCORING = True

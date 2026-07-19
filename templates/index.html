@@ -37,6 +37,14 @@
 
 </h3>
 
+<div class="score">
+
+{{ "★" * article.score }}
+
+{{ "☆" * (5 - article.score) }}
+
+</div>
+
 <div class="summary">
 
 {{ article.summary | replace('\n', '<br>') | safe }}

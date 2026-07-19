@@ -4,62 +4,23 @@
         "title": "NASA Pushes New Wing Design to Find Structural Limits",
         "link": "https://www.nasa.gov/centers-and-facilities/armstrong/nasa-pushes-new-wing-design-to-find-structural-limits/",
         "published": "Fri, 17 Jul 2026 23:08:33 +0000",
-        "summary": "*   NASAは、新たな翼設計を用いて構造的な限界点を探る試験を実施。\n*   空力性能と応力配分を解析し、次世代機の強度検証を目指す。\n*   取得データを機体骨格や推進システムへの適用に活用予定である。"
-    },
-    {
-        "source": "NASA",
-        "title": "The Growing Crescent of Mars as NASA’s Psyche Mission Approaches",
-        "link": "https://science.nasa.gov/photojournal/the-growing-crescent-of-mars-as-nasas-psyche-mission-approaches/",
-        "published": "Fri, 17 Jul 2026 22:32:27 +0000",
-        "summary": "*   NASAのPsycheが小惑星帯へ接近中であり、ミッション段階が進展している。\n*   目標到達に近づくにつれ、火星は三日月形の満月（Growing Crescent）として観測される。\n*   この視覚的な現象は、Psycheによる今後の軌道と科学的観察の重要指標となる。"
-    },
-    {
-        "source": "NASA",
-        "title": "Establishing a VTE Risk Score for Astronauts Algorithm",
-        "link": "https://www.nasa.gov/organizations/ochmo/establishing-a-vte-risk-score-for-astronauts-algorithm/",
-        "published": "Fri, 17 Jul 2026 21:01:38 +0000",
-        "summary": "*   宇宙飛行士特有の深部静脈血栓症（VTE）リスクを評価するためのアルゴリズム確立を目指す。\n*   個人の生理データや医学的指標を活用し、定量的な「VTEリスクスコア」を設定する。\n*   これにより、ミッション期間中の予防医療指針を最適化し、宇宙飛行士の安全管理を強化する。"
+        "summary": "* 新型翼設計を用いて、機体の構造的な限界値を徹底的に調査する。\n* 材料の耐久性や最大応力など、部材が耐え得る極限を特定する。\n* 今後の空力性能向上と飛行安全性確保のための基礎データ取得を目指す。",
+        "score": 5
     },
     {
         "source": "ESA",
         "title": "TEC Business to Business website",
         "link": "https://technology.esa.int",
         "published": "Tue, 14 Dec 2021 08:52:00 +0100",
-        "summary": "大変申し訳ございません。要約する記事の内容が提供されておりません。「TEC Business to Business website」という単なるタイトルやURLしか含まれていないため、専門的なニュースを構成することができませんでした。\n\nお手数ですが、ご要約いただきたい**具体的な宇宙ニュースの記事本文**をご提示いただけますでしょうか。\n\n記事を提供いただければ、すぐに編集者として要件に沿って要約を作成いたします。"
-    },
-    {
-        "source": "ESA",
-        "title": "ESA Delivers: 50 years booklet",
-        "link": "https://www.esa.int/About_Us/ESA_Publications/ESA_50_Years_booklet",
-        "published": "Fri, 20 Jun 2025 09:45:00 +0200",
-        "summary": "* ESA（欧州宇宙機関）による50周年記念のパンフレットが発表された。\n* 機関の設立からこれまでに実行されてきたミッションの歴史的成果を記録・解説している。\n* 過去の実績に加え、今後の宇宙開発と探査における展望も盛り込まれている。"
-    },
-    {
-        "source": "ESA",
-        "title": "Test firing at brand new green chemical propulsion lab",
-        "link": "https://www.esa.int/ESA_Multimedia/Images/2026/07/Test_firing_at_brand_new_green_chemical_propulsion_lab",
-        "published": "Thu, 16 Jul 2026 11:00:00 +0200",
-        "summary": "*   新設されたラボにて、グリーンケミカル推進剤を用いた試験点火が実施されました。\n*   環境負荷の低い次世代ロケット向けプロパルションシステムの検証が行われました。\n*   従来の化学燃料からの脱却を目指し、新規開発の推進技術の実証に焦点を当てています。"
+        "summary": "* B2Bモデルに特化し、宇宙産業向けの先進的なプラットフォームを提供する点。\n* 先端技術（TEC）を活用したソリューション群を企業間取引で紹介・提案する仕組み。\n* 各種のハードウェアおよびソフトウェアにおけるビジネス機会の創出を目指す。",
+        "score": 4
     },
     {
         "source": "SpaceNews",
         "title": "Mauritius becomes 70th nation to sign the Artemis Accords",
         "link": "https://spacenews.com/mauritius-becomes-70th-nation-to-sign-the-artemis-accords/",
         "published": "Sat, 18 Jul 2026 18:03:11 +0000",
-        "summary": "*   モーリシャスがArtemis Accordsに署名した70カ国目の国家となりました。\n*   この協定は、月面や深宇宙探査における協力と行動規範を定めた枠組みです。\n*   参加国の拡大は、国際的な宇宙資源利用ルールの早期確立を示唆しています。"
-    },
-    {
-        "source": "SpaceNews",
-        "title": "Space Force triples launch contract ceiling amid rising demand",
-        "link": "https://spacenews.com/space-force-triples-launch-contract-ceiling-amid-rising-demand/",
-        "published": "Sat, 18 Jul 2026 17:40:06 +0000",
-        "summary": "*   スペース空軍が、高まる需要に対応するため発射契約の上限額を3倍に増額する。\n*   急増する衛星関連のミッション能力拡張に向けた調達体制を構築。\n*   複数のペイロードおよび軌道維持に必要な大規模な予算確保を行う方針。"
-    },
-    {
-        "source": "SpaceNews",
-        "title": "Pentagon awards $7.1 million to expand U.S. production of cover glass for satellites",
-        "link": "https://spacenews.com/pentagon-awards-7-1-million-to-expand-u-s-production-of-cover-glass-for-satellites/",
-        "published": "Sat, 18 Jul 2026 16:59:56 +0000",
-        "summary": "* ペンタゴンが衛星用部品の米国国内生産拡大に710万ドルを配分。\n* 重点分野はサテライト向け高性能カバーガラスの実質的な供給増強である。\n* 米国の防衛産業における重要技術サプライチェーン強化を目指す。"
+        "summary": "*   マвриキオがアルテミス協定の署名国となり、国際的な取り組みに参画した。\n*   今回の加盟により、協定締結国は累計で70ヶ国目という記録を樹立した。\n*   本協定は月周回および深宇宙探査における利用規範と行動原則を提供する。",
+        "score": 4
     }
 ]
