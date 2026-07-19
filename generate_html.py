@@ -13,7 +13,7 @@ def generate_html(articles):
         grouped_articles[article["source"]].append(article)
 
     env = Environment(
-        loader=FileSystemLoader(".")
+        loader=FileSystemLoader("./templates")
     )
 
     template = env.get_template("index.html")
