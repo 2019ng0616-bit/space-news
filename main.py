@@ -11,11 +11,13 @@ def main():
     articles = fetch_all_feeds()
     save_to_json(articles)
 
+    # ---- ダッシュボード用の数字を計算 ----
     total_articles = len(articles)
     total_sources = len(set(a["source"] for a in articles))
     average_score = round(sum(a["score"] for a in articles) / total_articles, 1) if total_articles else 0
     updated_at = datetime.now().strftime("%Y-%m-%d %H:%M")
 
+    # ---- generate_html に渡す ----
     generate_html(
         articles,
         total_articles,
