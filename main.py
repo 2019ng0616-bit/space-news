@@ -24,7 +24,7 @@ def main():
     )
 
     copy2(
-        "static/tyle.css",
+        "static/style.css",
         "docs/style.css"
     )
 
