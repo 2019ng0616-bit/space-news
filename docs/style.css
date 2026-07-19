@@ -8,7 +8,7 @@ body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 
-/* 星の粒子レイヤー */
+/* 星の粒子レイヤー（ゆっくり動く） */
 body::before{
     content:"";
     position:fixed;
@@ -17,12 +17,20 @@ body::before{
     opacity:0.18;
     pointer-events:none;
     z-index:-1;
+    animation:starsMove 40s linear infinite;
+}
+
+@keyframes starsMove{
+    0%{ background-position:0 0; }
+    100%{ background-position:1000px 1000px; }
 }
 
 /* ===========================
    HEADER
 =========================== */
 header{
+    position:relative;
+    overflow:hidden;
     background: linear-gradient(135deg,#101935,#1b2a4f);
     padding:40px;
     text-align:center;
@@ -30,21 +38,68 @@ header{
     border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-/* タイトル：青白い光のグラデーション（べた塗り防止） */
+/* ヘッダーに光の帯 */
+header::after{
+    content:"";
+    position:absolute;
+    top:0; left:-50%;
+    width:200%; height:100%;
+    background:linear-gradient(120deg,
+        rgba(78,161,255,0.15),
+        rgba(255,255,255,0.05),
+        rgba(78,161,255,0.15)
+    );
+    animation:headerGlow 12s linear infinite;
+}
+
+@keyframes headerGlow{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(50%); }
+}
+
+/* ===========================
+   LOGO（星雲のようにゆらめく）
+=========================== */
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#eaf1ff;
+    text-shadow:
+        0 0 8px rgba(120,160,255,0.5),
+        0 0 16px rgba(120,160,255,0.4);
+    animation:nebula 6s ease-in-out infinite;
+}
+
+@keyframes nebula{
+    0%{ text-shadow:0 0 8px rgba(120,160,255,0.5); }
+    50%{ text-shadow:0 0 18px rgba(160,200,255,0.7); }
+    100%{ text-shadow:0 0 8px rgba(120,160,255,0.5); }
+}
+
+/* ===========================
+   TITLE（青べた塗り完全解消）
+=========================== */
 h1{
     font-size:40px;
     margin-bottom:10px;
+    color:#e6edff; /* 淡い白青ベース */
+    letter-spacing:0.06em;
+
+    /* 発光効果（内側＋外側） */
+    text-shadow:
+        0 0 6px rgba(120,160,255,0.45),
+        0 0 12px rgba(120,160,255,0.35),
+        0 0 24px rgba(160,200,255,0.25);
+
+    /* グラデーションを薄く重ねる（べた塗り防止） */
     background: linear-gradient(
         90deg,
-        #7fbaff 0%,
-        #cfe3ff 40%,
-        #ffffff 60%,
+        #bcd3ff 0%,
+        #ffffff 40%,
         #9db8ff 100%
     );
     -webkit-background-clip:text;
-    color:transparent;
-    letter-spacing:0.06em;
-    filter: drop-shadow(0 0 6px rgba(120,160,255,0.35));
+    background-clip:text;
 }
 
 .subtitle{
@@ -86,7 +141,7 @@ section{
 }
 
 /* ===========================
-   CARD (Glassmorphism)
+   CARD（ガラス＋光の反射）
 =========================== */
 .card{
     background: rgba(22,33,62,0.55);
@@ -100,20 +155,20 @@ section{
     overflow:hidden;
 }
 
-/* カード上部の淡い光 */
+/* 光の反射 */
 .card::before{
     content:"";
     position:absolute;
     inset:-40%;
-    background: radial-gradient(circle at 0 0, rgba(78,161,255,0.25), transparent 55%);
+    background: radial-gradient(circle at 20% 0%, rgba(78,161,255,0.35), transparent 60%);
     opacity:0.7;
     pointer-events:none;
     z-index:-1;
 }
 
 .card:hover{
-    transform:translateY(-8px) scale(1.02);
-    box-shadow:0 16px 32px rgba(0,0,0,.6);
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 20px 40px rgba(0,0,0,.6);
     border-color:rgba(78,161,255,0.6);
 }
 
@@ -146,7 +201,7 @@ section{
 }
 
 /* ===========================
-   BUTTON (発光)
+   BUTTON（発光＋軌跡）
 =========================== */
 .button{
     display:inline-block;
@@ -160,13 +215,31 @@ section{
     transition:0.25s;
     box-shadow:0 0 12px rgba(68,137,255,0.6);
     font-size:14px;
+    position:relative;
+    overflow:hidden;
+}
+
+.button::after{
+    content:"";
+    position:absolute;
+    top:0; left:-100%;
+    width:200%; height:100%;
+    background:linear-gradient(120deg,
+        rgba(255,255,255,0.2),
+        rgba(78,161,255,0.4),
+        rgba(255,255,255,0.2)
+    );
+    transition:0.4s;
 }
 
 .button:hover{
     background:#4ea1ff;
-    color:#ffffff;
     transform:translateY(-2px);
     box-shadow:0 0 18px rgba(78,161,255,0.9);
+}
+
+.button:hover::after{
+    left:0;
 }
 
 /* ===========================
