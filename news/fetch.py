@@ -14,11 +14,19 @@ RSS_FEEDS = {
 
 def fetch_feed(source, url):
 
+    print(f"Connecting -> {source}")
+
     feed = feedparser.parse(url)
 
-    articles = []
+    if feed.bozo:
+        print(f"[WARNING] {source}: RSS parse error")
+        print(feed.bozo_exception)
 
     entries = feed.entries[:MAX_ARTICLES]
+
+    print(f"{source}: {len(entries)} article(s)")
+
+    articles = []
 
     for i, entry in enumerate(entries, start=1):
 
@@ -37,14 +45,16 @@ Summary:
 
         analysis = analyze_article(content)
 
-        articles.append({
-            "source": source,
-            "title": title,
-            "link": entry.get("link", ""),
-            "published": entry.get("published", ""),
-            "summary": analysis["summary"],
-            "score": analysis["score"]
-        })
+        articles.append(
+            {
+                "source": source,
+                "title": title,
+                "link": entry.get("link", ""),
+                "published": entry.get("published", ""),
+                "summary": analysis["summary"],
+                "score": analysis["score"],
+            }
+        )
 
     return articles
 
@@ -55,8 +65,20 @@ def fetch_all_feeds():
 
     for source, url in RSS_FEEDS.items():
 
-        print(f"Fetching {source}...")
+        try:
 
-        all_articles.extend(fetch_feed(source, url))
+            articles = fetch_feed(source, url)
+
+            all_articles.extend(articles)
+
+        except Exception as e:
+
+            print("=" * 50)
+            print(f"[ERROR] {source}")
+            print(e)
+            print("=" * 50)
+
+    print()
+    print(f"Total Articles : {len(all_articles)}")
 
     return all_articles
