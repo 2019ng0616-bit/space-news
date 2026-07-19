@@ -1,6 +1,8 @@
 from collections import defaultdict
+from pathlib import Path
+import shutil
+
 from jinja2 import Environment, FileSystemLoader
-import os
 
 
 def generate_html(articles):
@@ -20,14 +22,20 @@ def generate_html(articles):
         grouped_articles=grouped_articles
     )
 
-    os.makedirs("output", exist_ok=True)
+    output_dir = Path("output")
+    output_dir.mkdir(exist_ok=True)
 
     with open(
-        "output/index.html",
+        output_dir / "index.html",
         "w",
         encoding="utf-8"
     ) as f:
 
         f.write(html)
 
-    print("Static HTML generated.")
+    shutil.copy(
+        "static/style.css",
+        output_dir / "style.css"
+    )
+
+    print("Static site generated.")

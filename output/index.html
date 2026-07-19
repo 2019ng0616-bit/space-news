@@ -5,60 +5,58 @@
 
     <meta charset="UTF-8">
 
-    <title>Space News AI</title>
+    <title>Orbit Brief</title>
 
-    <link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<h1>🚀 Space News AI</h1>
+<h1>🚀 Orbit Brief</h1>
 
-{% for source, articles in grouped_articles.items() %}
+
 
 <section class="source-section">
 
 <h2 class="source-title">
 
-{{ source }}
+NASA
 
 </h2>
 
-{% for article in articles %}
+
 
 <div class="card">
 
 <h3>
 
-{{ article.title }}
+NASA Pushes New Wing Design to Find Structural Limits
 
 </h3>
 
 <div class="score">
 
-{{ "★" * article.score }}
+★★★★★
 
-{{ "☆" * (5 - article.score) }}
+
 
 </div>
 
 <div class="summary">
 
-{{ article.summary | replace('\n', '<br>') | safe }}
+NASAが、軽量で細い新翼設計の構造的限界を探る過酷なテストを実施した。<br>意図的な限界突破の実験から、設計の潜在能力に大きな期待が集まった。<br>新しい翼技術は航空機工学における重要な進展となる可能性を秘める。
 
 </div>
 
 <div class="published">
 
-{{ article.published }}
+Fri, 17 Jul 2026 23:08:33 +0000
 
 </div>
 
 <a
-href="{{ article.link }}"
+href="https://www.nasa.gov/centers-and-facilities/armstrong/nasa-pushes-new-wing-design-to-find-structural-limits/"
 target="_blank">
 
 記事を見る →
@@ -67,11 +65,119 @@ target="_blank">
 
 </div>
 
-{% endfor %}
+
 
 </section>
 
-{% endfor %}
+
+
+<section class="source-section">
+
+<h2 class="source-title">
+
+ESA
+
+</h2>
+
+
+
+<div class="card">
+
+<h3>
+
+TEC Business to Business website
+
+</h3>
+
+<div class="score">
+
+★★
+
+☆☆☆
+
+</div>
+
+<div class="summary">
+
+TEC関連企業向けのビジネス用プラットフォームを紹介。<br>具体的な宇宙ミッションやニュース要素は含まれない。<br>単なるウェブサイトの存在告知記事と判断される。
+
+</div>
+
+<div class="published">
+
+Tue, 14 Dec 2021 08:52:00 +0100
+
+</div>
+
+<a
+href="https://technology.esa.int"
+target="_blank">
+
+記事を見る →
+
+</a>
+
+</div>
+
+
+
+</section>
+
+
+
+<section class="source-section">
+
+<h2 class="source-title">
+
+SpaceNews
+
+</h2>
+
+
+
+<div class="card">
+
+<h3>
+
+Mauritius becomes 70th nation to sign the Artemis Accords
+
+</h3>
+
+<div class="score">
+
+★★★★★
+
+
+
+</div>
+
+<div class="summary">
+
+モーリシャスがアルテミス協定に署名した。<br>これにより、アルテミス協定の署名国は70カ国となった。<br>短期間で国家参加が進む国際的な動きを示す。
+
+</div>
+
+<div class="published">
+
+Sat, 18 Jul 2026 18:03:11 +0000
+
+</div>
+
+<a
+href="https://spacenews.com/mauritius-becomes-70th-nation-to-sign-the-artemis-accords/"
+target="_blank">
+
+記事を見る →
+
+</a>
+
+</div>
+
+
+
+</section>
+
+
 
 </body>
 
