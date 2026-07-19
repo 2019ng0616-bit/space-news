@@ -2,40 +2,66 @@
 <html lang="ja">
 
 <head>
+
     <meta charset="UTF-8">
+
     <title>Space News AI</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
 
 <h1>🚀 Space News AI</h1>
 
+{% for source, articles in grouped_articles.items() %}
+
+<section class="source-section">
+
+<h2 class="source-title">
+
+{{ source }}
+
+</h2>
+
 {% for article in articles %}
 
 <div class="card">
 
-    <div class="source">
-        {{ article.source }}
-    </div>
+<h3>
 
-    <h2>{{ article.title }}</h2>
+{{ article.title }}
 
-    <div class="summary">
-        {{ article.summary | replace('\n', '<br>') | safe }}
-    </div>
+</h3>
 
-    <div class="published">
-        {{ article.published }}
-    </div>
+<div class="summary">
 
-    <a href="{{ article.link }}" target="_blank">
-        記事を見る →
-    </a>
+{{ article.summary | replace('\n', '<br>') | safe }}
 
 </div>
+
+<div class="published">
+
+{{ article.published }}
+
+</div>
+
+<a
+href="{{ article.link }}"
+target="_blank">
+
+記事を見る →
+
+</a>
+
+</div>
+
+{% endfor %}
+
+</section>
 
 {% endfor %}
 
