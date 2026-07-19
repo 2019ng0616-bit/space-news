@@ -255,6 +255,62 @@ footer{
     background:linear-gradient(180deg,#0b1020,#050814);
 }
 
+.dashboard{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+gap:20px;
+
+margin-bottom:40px;
+
+}
+
+.dashboard-card{
+
+background:#16213e;
+
+padding:25px;
+
+border-radius:15px;
+
+text-align:center;
+
+box-shadow:0 6px 16px rgba(0,0,0,.25);
+
+}
+
+.dashboard-card h3{
+
+margin-bottom:10px;
+
+color:#8cb8ff;
+
+}
+
+.dashboard-card p{
+
+font-size:28px;
+
+font-weight:bold;
+
+}
+
+.top-story{
+
+background:#202c59;
+
+padding:30px;
+
+border-radius:16px;
+
+margin-bottom:40px;
+
+border-left:6px solid gold;
+
+}
+
 /* ===========================
    MOBILE
 =========================== */

@@ -1,4 +1,5 @@
 from collections import defaultdict
+from datetime import datetime
 from pathlib import Path
 import shutil
 
@@ -12,35 +13,44 @@ def generate_html(articles):
     for article in articles:
         grouped_articles[article["source"]].append(article)
 
+    total_articles = len(articles)
+
+    total_sources = len(grouped_articles)
+
+    average_score = round(
+        sum(a["score"] for a in articles) / total_articles,
+        1
+    ) if articles else 0
+
+    top_story = max(
+        articles,
+        key=lambda x: x["score"]
+    ) if articles else None
+
+    updated_at = datetime.now().strftime("%Y-%m-%d %H:%M")
+
     env = Environment(
-        loader=FileSystemLoader("./templates")
+        loader=FileSystemLoader("templates")
     )
 
     template = env.get_template("index.html")
 
     html = template.render(
-        grouped_articles=grouped_articles
+        grouped_articles=grouped_articles,
+        total_articles=total_articles,
+        total_sources=total_sources,
+        average_score=average_score,
+        top_story=top_story,
+        updated_at=updated_at,
     )
 
-    # GitHub Pages とローカルで共通の構造にする
     output_dir = Path("output")
-    static_dir = output_dir / "static"
-
     output_dir.mkdir(exist_ok=True)
-    static_dir.mkdir(exist_ok=True)
 
-    # index.html を出力
-    with open(
-        output_dir / "index.html",
-        "w",
-        encoding="utf-8"
-    ) as f:
+    with open(output_dir / "index.html", "w", encoding="utf-8") as f:
         f.write(html)
 
-    # CSS を output/static にコピー
     shutil.copy(
         "static/style.css",
-        static_dir / "style.css"
+        output_dir / "style.css"
     )
-
-    print("Static site generated.")

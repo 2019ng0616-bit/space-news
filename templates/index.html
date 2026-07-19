@@ -2,75 +2,88 @@
 <html lang="ja">
 
 <head>
-
     <meta charset="UTF-8">
-
     <title>Orbit Brief</title>
-
     <link rel="stylesheet" href="./static/style.css">
-
 </head>
 
 <body>
 
-<h1>🚀 Orbit Brief</h1>
+<header>
+    <h1>🚀 Orbit Brief</h1>
 
-{% for source, articles in grouped_articles.items() %}
+    <p class="subtitle">
+        AI-powered Space Intelligence
+    </p>
 
-<section class="source-section">
+    <p class="update">
+        最終更新 {{ updated_at }}
+    </p>
+</header>
 
-<h2 class="source-title">
+<section class="dashboard">
 
-{{ source }}
+    <div class="dashboard-card">
+        <h3>記事数</h3>
+        <p>{{ total_articles }}</p>
+    </div>
 
-</h2>
+    <div class="dashboard-card">
+        <h3>ソース</h3>
+        <p>{{ total_sources }}</p>
+    </div>
 
-{% for article in articles %}
-
-<div class="card">
-
-<h3>
-
-{{ article.title }}
-
-</h3>
-
-<div class="score">
-
-{{ "★" * article.score }}
-
-{{ "☆" * (5 - article.score) }}
-
-</div>
-
-<div class="summary">
-
-{{ article.summary | replace('\n', '<br>') | safe }}
-
-</div>
-
-<div class="published">
-
-{{ article.published }}
-
-</div>
-
-<a
-href="{{ article.link }}"
-target="_blank">
-
-記事を見る →
-
-</a>
-
-</div>
-
-{% endfor %}
+    <div class="dashboard-card">
+        <h3>平均重要度</h3>
+        <p>{{ average_score }}</p>
+    </div>
 
 </section>
 
+{% if top_story %}
+<section class="top-story">
+    <h2>🔥 Top Story</h2>
+    <h3>{{ top_story.title }}</h3>
+    <p>{{ top_story.summary }}</p>
+
+    <a class="button" href="{{ top_story.link }}" target="_blank">
+        記事を読む →
+    </a>
+</section>
+{% endif %}
+
+{% for source, articles in grouped_articles.items() %}
+<section class="source-section">
+
+    <h2 class="source-title">{{ source }}</h2>
+
+    {% for article in articles %}
+    <div class="card">
+
+        <h3>{{ article.title }}</h3>
+
+        <div class="score">
+            {{ "★" * article.score }}
+            {{ "☆" * (5 - article.score) }}
+        </div>
+
+        <div class="summary">
+            {{ article.summary | replace('\n', '<br>') | safe }}
+        </div>
+
+        <div class="published">
+            {{ article.published }}
+        </div>
+
+        <a href="{{ article.link }}" target="_blank">
+            記事を見る →
+        </a>
+
+    </div>
+    {% endfor %}
+
+</section>
 {% endfor %}
 
 </body>
-
 </html>
