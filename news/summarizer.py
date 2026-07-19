@@ -1,21 +1,47 @@
+import json
+import re
+
 from ollama import chat
 from config import MODEL_NAME
 
-def summarize_article(text: str) -> str:
+
+def analyze_article(text: str) -> dict:
     """
-    記事を日本語で3点に要約する
+    記事をAIで解析する
+
+    Returns
+    -------
+    {
+        "summary": "...",
+        "score": 5
+    }
     """
 
     prompt = f"""
 あなたは宇宙ニュース専門の編集者です。
 
-以下の記事を日本語で要約してください。
+以下の記事について解析してください。
 
-条件
-・箇条書き3点
-・各項目40文字以内
-・専門用語はできるだけ残す
-・前置きは禁止
+出力ルールを絶対に守ってください。
+
+【出力形式】
+JSONのみを出力してください。
+説明文は禁止です。
+Markdownは禁止です。
+```json は禁止です。
+
+JSON形式は必ず以下です。
+
+{{
+  "summary": [
+    "40文字以内",
+    "40文字以内",
+    "40文字以内"
+  ],
+  "score": 1
+}}
+
+scoreは1〜5の整数のみ。
 
 記事
 
@@ -32,55 +58,29 @@ def summarize_article(text: str) -> str:
         ]
     )
 
-    return response["message"]["content"].strip()
+    result = response["message"]["content"]
 
-
-def score_article(text: str) -> int:
-    """
-    記事の重要度を1〜5で評価する
-    """
-
-    prompt = f"""
-あなたは宇宙ニュース専門の編集者です。
-
-以下の記事の重要度を評価してください。
-
-評価基準
-
-5：宇宙業界全体へ大きな影響
-4：かなり重要
-3：一般的なニュース
-2：小さな話題
-1：ほとんど重要ではない
-
-回答は
-
-1
-2
-3
-4
-5
-
-の数字だけ。
-
-記事
-
-{text}
-"""
-
-    response = chat(
-        model=MODEL_NAME,
-        messages=[
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ]
-    )
-
-    result = response["message"]["content"].strip()
+    # 万一 ```json が付いてきても除去
+    result = re.sub(r"```json", "", result)
+    result = re.sub(r"```", "", result)
+    result = result.strip()
 
     try:
-        return int(result)
-    except ValueError:
-        return 3
+
+        data = json.loads(result)
+
+        return {
+            "summary": "\n".join(data["summary"]),
+            "score": int(data["score"])
+        }
+
+    except Exception as e:
+
+        print("JSON Parse Error")
+        print(result)
+        print(e)
+
+        return {
+            "summary": "要約失敗",
+            "score": 3
+        }

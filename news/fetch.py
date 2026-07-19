@@ -1,10 +1,7 @@
 import feedparser
-from config import (
-    MAX_ARTICLES,
-    ENABLE_SUMMARY
-)
 
-from news.summarizer import summarize_article
+from config import MAX_ARTICLES
+from news.summarizer import analyze_article
 
 
 RSS_FEEDS = {
@@ -21,7 +18,6 @@ def fetch_feed(source, url):
 
     articles = []
 
-    # configで指定した数
     entries = feed.entries[:MAX_ARTICLES]
 
     for i, entry in enumerate(entries, start=1):
@@ -29,18 +25,25 @@ def fetch_feed(source, url):
         print(f"[{source}] {i}/{len(entries)}")
 
         title = entry.get("title", "")
+        summary_text = entry.get("summary", "")
 
-        if ENABLE_SUMMARY:
-            summary = summarize_article(title)
-        else:
-            summary = ""
+        content = f"""
+Title:
+{title}
+
+Summary:
+{summary_text}
+"""
+
+        analysis = analyze_article(content)
 
         articles.append({
             "source": source,
             "title": title,
             "link": entry.get("link", ""),
             "published": entry.get("published", ""),
-            "summary": summary
+            "summary": analysis["summary"],
+            "score": analysis["score"]
         })
 
     return articles
