@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>アーカイブ | 宇宙の朝刊</title>
+    <meta name="description" content="NASA・JAXA・ESA・SpaceNewsの新着を、AIが日本語で要約して毎朝お届け">
+    <meta property="og:title" content="アーカイブ | 宇宙の朝刊">
+    <meta property="og:description" content="NASA・JAXA・ESA・SpaceNewsの新着を、AIが日本語で要約して毎朝お届け">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://2019ng0616-bit.github.io/space-news/archive/">
+    <meta property="og:site_name" content="宇宙の朝刊">
+    <meta property="og:locale" content="ja_JP">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="アーカイブ | 宇宙の朝刊">
+    <meta name="twitter:description" content="NASA・JAXA・ESA・SpaceNewsの新着を、AIが日本語で要約して毎朝お届け">
+    
+    <link rel="icon" type="image/svg+xml" href="../static/favicon.svg?v=20261118">
+    <link rel="stylesheet" href="../static/style.css?v=20261118">
+</head>
+
+<body>
+
+<header>
+    <p class="brand">宇宙の朝刊</p>
+
+    <h1>🚀 今日の宇宙ニュース</h1>
+
+    <p class="tagline">
+        NASA・JAXA・ESA・SpaceNewsの新着を、AIが日本語で要約して毎朝お届け
+    </p>
+
+    <p class="page-nav">
+        <a href="../index.html">トップ</a>
+    </p>
+</header>
+
+<section>
+
+    <h2 class="source">📚 アーカイブ</h2>
+
+    
+    <ul class="archive-list">
+        
+        <li>
+            <a href="./2026-11-17.html">2026-11-17</a>
+            <span class="archive-count">12件</span>
+        </li>
+        
+    </ul>
+    
+
+</section>
+
+<footer class="site-footer">
+    <p class="footer-brand">🚀 宇宙の朝刊</p>
+
+    <p class="footer-tagline">
+        NASA・JAXA・ESA・SpaceNewsの新着を、AIが日本語で要約して毎朝お届け
+    </p>
+
+    <p class="footer-nav">
+        <a href="../index.html">トップ</a>
+        <span class="stat-separator" aria-hidden="true">·</span>
+        <a href="./index.html">アーカイブ</a>
+        <span class="stat-separator" aria-hidden="true">·</span>
+        <a href="https://github.com/2019ng0616-bit/space-news" target="_blank" rel="noopener">GitHub</a>
+    </p>
+
+    <p class="footer-note">
+        記事・画像の著作権は各配信元（NASA・JAXA・ESA・SpaceNews）に帰属します。要約と日本語タイトルはAI（Gemma）が生成したもので、内容の正確性は各記事の原文をご確認ください。
+    </p>
+
+    <p class="footer-credit">Powered by GitHub Pages · Summarized by Gemma (Ollama)</p>
+
+    <p class="footer-copy">© 2026 宇宙の朝刊</p>
+</footer>
+
+<button type="button" class="back-to-top" id="back-to-top" aria-label="トップに戻る">↑</button>
+
+<script>
+(function () {
+    var button = document.getElementById("back-to-top");
+
+    function toggleButton() {
+        if (window.scrollY > window.innerHeight) {
+            button.classList.add("show");
+        } else {
+            button.classList.remove("show");
+        }
+    }
+
+    window.addEventListener("scroll", toggleButton, { passive: true });
+    toggleButton();
+
+    button.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+})();
+</script>
+
+</body>
+</html>
