@@ -264,10 +264,39 @@ h1{
 }
 
 .toc-heading{
-    margin:0 0 8px;
-    color:#eaf1ff;
-    font-size:15px;
+    margin:0 0 10px;
+    color:#ffffff;
+    font-size:16px;
     font-weight:700;
+}
+
+.toc-top{
+    margin:0 0 4px;
+    line-height:1.55;
+}
+
+.toc-top a{
+    color:#ffffff;
+    font-weight:700;
+    text-decoration:none;
+}
+
+.toc-top a:hover{
+    text-decoration:underline;
+}
+
+.toc-group{
+    margin-top:14px;
+}
+
+.toc-source-name{
+    margin:0 0 6px;
+    padding-bottom:5px;
+    border-bottom:1px solid rgba(255,255,255,0.25);
+    color:#ffffff;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:0.04em;
 }
 
 .toc-list{
@@ -277,27 +306,28 @@ h1{
 }
 
 .toc-list li{
-    margin:7px 0;
-    line-height:1.5;
+    position:relative;
+    margin:6px 0;
+    padding-left:15px;
+    line-height:1.55;
+}
+
+.toc-list li::before{
+    content:"›";
+    position:absolute;
+    left:2px;
+    color:#ffffff;
+    font-weight:700;
 }
 
 .toc-list a{
-    color:#cfe0ff;
+    color:#f4f8ff;
     text-decoration:none;
 }
 
 .toc-list a:hover{
-    color:#9db8ff;
+    color:#ffffff;
     text-decoration:underline;
-}
-
-.toc-source{
-    display:inline-block;
-    min-width:84px;
-    margin-right:8px;
-    color:#9db8ff;
-    font-size:12px;
-    font-weight:700;
 }
 
 .card,
