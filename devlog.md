@@ -1061,3 +1061,51 @@ header に overflow:hidden があると、absolute 配置のドロップダウ�
 ### 学び
 
 「生成」と「要約」を分離できると、デザイン変更の検証コストが30分→数分に落ちる。もともと data/news.json という中間成果物があったおかげで、再生成モードは薄い入口を足すだけで済んだ。パイプラインの途中に再開可能な境界（保存済みデータ）があると、運用の自由度が上がる。
+
+# 2026-11-24
+
+## Issue #45
+
+ユーザー報告の不具合修正。本日のNASAカード「NASA+ドキュメンタリーが『エウロパ・クリッパー』の深宇宙探査を特集」の画像が表示されていなかった。
+
+### 原因
+
+NASAフィードの当該エントリは、media:content が YouTube埋め込みURL（medium="video"）のみで、画像は media:thumbnail（公式ポスター）側にあった。_extract_image の (a) は「画像と明示されたものが無い場合、最初の media:content URLをフォールバックとして返す」実装で、medium を見ていなかったため動画ページのURLが <img src> に入り、表示不能になっていた。media:thumbnail まで処理が進まないのも一因。
+
+### 実施内容
+
+- news/fetch.py: media:content のフォールバックで動画（medium="video" / type="video/*"）を除外し、本物の画像（media:thumbnail 等）に処理を委ねる
+- 動画しか無いエントリ向けに、動画URLを最後の手段として保持し、最終段の _normalize_image_url で整える: YouTube（embed / watch / shorts / youtu.be）は i.ytimg.com のサムネイル画像URLに変換、Vimeo 等の変換できない動画ページURLは画像なしに落とす
+- 抽出本体は _extract_image_url に分離し、_extract_image が検証付きの入口になった
+
+### 動作確認
+
+- 単体テスト9/9 PASS（py_compile も通過）: 実ケース（動画media＋thumbnail → ポスター採用）、動画のみ → YouTubeサムネイル変換、画像media優先、Vimeoのみ → 画像なし、summary内 <img> のYouTube URL変換、通常画像は無変更
+- 実データ検証: 本日取得した NASA フィードXMLを feedparser で読み、当該エントリに _extract_image を適用 → 公式ポスター画像（theeuropaconceptposter-....jpg）が返ることを確認
+- data/news.json と cache は無変更。本日の公開ページの当該カードは、明朝の通常更新で再取得される際に直る（フィード上位に残っていればポスター画像付きで表示される）
+
+### 学び
+
+「フォールバックは寛容に」という設計が、型の違うメディア（動画）を画像として通してしまった。media:content は画像専用タグではなく、medium/type を見ないフォールバックは危険。最終段に「画像として表示できるURLか」の検証を1枚挟むと、抽出経路が増えても事故が外に出ない。
+
+## Issue #46
+
+情報源の拡充とトップページの情報設計の見直し。「本日の記事が少ない。毎日更新があるのはNASAくらいか」という指摘から、更新頻度の高い3ソースを追加し、あわせて区分（カテゴリ）分けとヘッダー圧縮を行った。
+
+### 実施内容
+
+- 情報源を3件追加（全8ソースに）: Universe Today（毎日約3件・天文学寄り）、Spaceflight Now（打ち上げ速報）、アストロアーツ（日本語・天文現象）。候補は実フィードを取得して更新頻度と画像の有無を測って選定した（NASASpaceFlight / JPL / Space.com はこの環境から取得できず未確認のため見送り）
+- ソースを区分でグループ化: 「宇宙機関」（NASA・ESA・JAXA）、「ニュースサイト」（sorae・Universe Today・Spaceflight Now・SpaceNews）、「天文」（アストロアーツ）。generate_html.py に SOURCE_CATEGORIES を置き、SOURCE_ORDER はその展開として導出。本文に区分見出し（罫線付き）を入れ、目次も区分ラベル＋ソースボタンに再編。区分に属さないソースは「その他」に残し、設定漏れで記事が消えないようにした。アーカイブ日別ページにも同じ区分レイアウトを適用
+- ヘッダーを圧縮: 「最終更新」を独立した行から統計バー（記事数・ソース数・平均重要度）の先頭項目に統合し、バー自体も小型化（フォント14px→12.5px、余白と行間を縮小、折り返し可に変更）
+- news/fetch.py: フィード取得が ChunkedEncodingError で途中切断された場合に、Accept-Encoding: identity で1回だけ再試行する（アストロアーツのサーバーが gzip チャンク応答で切断される実測への対策。他ソースの保険にもなる）
+- 出典表記を全ページで更新: SITE_DESCRIPTION、各テンプレートのフッター、README に新3ソースを追加
+
+### 動作確認
+
+- 実フィード取得テスト（要約AIはスタブ、本物の fetch_feed 経由）: 3ソースとも本日付3件ずつ取得。Universe Today と Spaceflight Now は画像URLも取得、アストロアーツは日付が現象日時で配信される（未来日付の記事が先行表示される）ため画像なし・日時先行が仕様として残る
+- 単体テスト4/4 PASS: SOURCE_ORDER が区分の展開と一致、未知ソースの「その他」フォールバック、区分内の並び順
+- jsdom回帰16/16 PASS: 区分見出しの順序、セクション順（NASA→ESA→JAXA→sorae→Universe Today→Spaceflight Now→SpaceNews→アストロアーツ）、目次の3区分グループとボタン、統計バーへの最終更新の統合（旧 .update 要素の消滅）、全ページ種のフッター出典、アーカイブ日別ページの区分表示と検索維持
+
+### 学び
+
+ソースを増やすだけだと並びが「追加順」の歴史になりがちで、区分を先に決めると並び順と目次が自然に決まる。区分定義を1か所（SOURCE_CATEGORIES）に寄せ、順序は導出する形にすると、次にソースを足すときも判断が1回で済む。

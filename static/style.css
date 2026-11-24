@@ -321,17 +321,49 @@ h1{
     transform:scale(0.97);
 }
 
+.toc-category{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:6px 10px;
+    margin-top:10px;
+}
+
+.toc-category-name{
+    color:#9db8ff;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:0.12em;
+}
+
+.category-heading{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    max-width:1200px;
+    margin:36px auto 2px;
+    padding:0 20px;
+    color:#9db8ff;
+    font-size:16px;
+    font-weight:800;
+    letter-spacing:0.14em;
+}
+
+.category-heading::before,
+.category-heading::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:rgba(157,184,255,0.35);
+}
+
 .card,
 .top-story,
 .source-section{
     scroll-margin-top:14px;
 }
 
-.update{
-    color:#aaa;
-    font-size:14px;
-    margin-top:8px;
-}
+
 
 /* ===========================
    CONTENT
@@ -566,27 +598,31 @@ footer{
 
 .stats-bar{
     display:flex;
+    flex-wrap:wrap;
     align-items:center;
     justify-content:center;
-    gap:16px;
+    gap:3px 10px;
     width:fit-content;
     max-width:calc(100% - 32px);
-    margin:16px auto 0;
-    padding:7px 16px;
+    margin:10px auto 0;
+    padding:5px 14px;
     border:1px solid rgba(255,255,255,0.1);
-    border-radius:999px;
+    border-radius:16px;
     background:rgba(5,8,20,0.28);
     backdrop-filter:blur(10px);
     color:#aebbd6;
-    font-size:14px;
-    line-height:1.4;
-    white-space:nowrap;
+    font-size:12.5px;
+    line-height:1.35;
 }
 
 .stat-item{
     display:inline-flex;
     align-items:baseline;
     gap:5px;
+}
+
+.stat-update{
+    color:#8ea3c7;
 }
 
 .stat-label{
@@ -773,16 +809,16 @@ footer{
         font-size:32px;
     }
     .stats-bar{
-        gap:8px;
+        gap:2px 8px;
         max-width:calc(100% - 24px);
-        padding:6px 12px;
-        font-size:13px;
+        padding:4px 10px;
+        font-size:12px;
     }
     .stat-item{
         gap:4px;
     }
     .stat-value{
-        font-size:14px;
+        font-size:13px;
     }
     section{
         padding:16px 14px 22px;
