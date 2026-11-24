@@ -322,14 +322,12 @@ h1{
 }
 
 .toc-category{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:6px 10px;
-    margin-top:10px;
+    margin-top:12px;
 }
 
 .toc-category-name{
+    display:block;
+    margin-bottom:6px;
     color:#9db8ff;
     font-size:12px;
     font-weight:800;
@@ -568,14 +566,6 @@ footer{
     line-height:1.7;
 }
 
-.footer-brand{
-    margin:0 0 4px;
-    color:#eaf1ff;
-    font-size:15px;
-    font-weight:600;
-    letter-spacing:0.2em;
-}
-
 .footer-tagline{
     margin:0 0 12px;
 }
@@ -598,10 +588,9 @@ footer{
 
 .stats-bar{
     display:flex;
-    flex-wrap:wrap;
+    flex-direction:column;
     align-items:center;
-    justify-content:center;
-    gap:3px 10px;
+    gap:2px;
     width:fit-content;
     max-width:calc(100% - 32px);
     margin:10px auto 0;
@@ -613,6 +602,12 @@ footer{
     color:#aebbd6;
     font-size:12.5px;
     line-height:1.35;
+}
+
+.stat-line{
+    display:inline-flex;
+    align-items:baseline;
+    gap:10px;
 }
 
 .stat-item{
